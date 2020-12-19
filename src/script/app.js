@@ -6,7 +6,7 @@ const streetDisplayTitle = document.getElementById('street-name');
 // The following function will accept a parameter and get the street names from the API. 
 // Check if the street exist or not. 
 // Use one other function to display them on the web. 
-const getStreets = (streetName) => {
+const getStreets = function (streetName) {
   fetch('https://api.winnipegtransit.com/v3/streets.json?name=' + streetName + '&usage=long&api-key=' + APIKey)
     .then(response => response.json())
     .then(data => {
@@ -20,7 +20,7 @@ const getStreets = (streetName) => {
 
 // The following function will accept a parameter and target street element from the html file and 
 // add the data in that element to display on the web. 
-const displayStreets = (streets) => {
+const displayStreets = function (streets) {
   streetsElement.textContent = '';
   streets.forEach(street => {
     streetsElement.insertAdjacentHTML('beforeend', `
@@ -31,7 +31,7 @@ const displayStreets = (streets) => {
 
 // The following function will accept one parameter and get the data for perticular street. 
 // Will use one other function to print all data.
-const getBuses = (bus) => {
+const getBuses = function (bus) {
   fetch('https://api.winnipegtransit.com/v3/stops.json?street=' + bus + '&api-key=' + APIKey)
     .then(response => response.json())
     .then(data => {
@@ -48,7 +48,7 @@ const getBuses = (bus) => {
 // It also uses the Promise.all() method. 
 // This function also uses ".toLocaleTimeString()" method to just show two digits for hours and minutes.  
 // you can check that method at "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString"
-const printdata = (stopPoint) => {
+const printdata = function (stopPoint) {
   tableBody.textContent = '';
   Promise.all(stopPoint)
     .then(response => {
